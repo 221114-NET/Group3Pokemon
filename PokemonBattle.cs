@@ -57,8 +57,14 @@ partial class Program
                     damage = Math.Max(damage / 2, 1);
                 }
                 //todo add critical attacks
-                //Random rnd = new Random();
-
+                Random rnd = new Random();
+                //todo adjust crit chance
+                int rndNumber = rnd.Next(1, 6);
+                if (rndNumber > 1)
+                {
+                    damage *= 2;
+                    System.Console.WriteLine("Critical Hit!");
+                }
                 // check to see if the damage is greater than 0
                 if (damage > 0)
                 {
@@ -90,6 +96,14 @@ partial class Program
                     else
                     {
                         damage = Math.Max(damage / 2, 1);
+                    }
+                    //todo add critical attacks
+                    //todo adjust crit chance
+                    rndNumber = rnd.Next(1, 6);
+                    if (rndNumber > 1)
+                    {
+                        damage *= 2;
+                        System.Console.WriteLine("Critical Hit!");
                     }
 
                     // check to see if the damage is greater than 0
