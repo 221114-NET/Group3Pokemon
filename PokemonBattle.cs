@@ -7,14 +7,17 @@ partial class Program
     class PokemonBattle 
     {
         // create a constructor
-        public PokemonBattle(PokemonData pokemon1, PokemonData pokemon2)
+        public PokemonBattle(PokemonData pokemon1, PokemonData pokemon2, string pokemonImage)
         {
             Pokemon1 = pokemon1;
             Pokemon2 = pokemon2;
+            this.pokemonImage = pokemonImage;
         }
         // create properties
         public PokemonData Pokemon1 { get; set; }
         public PokemonData Pokemon2 { get; set; }
+
+        public string pokemonImage;
         // create a method that will run the battle
         public void RunBattle()
         {
@@ -24,7 +27,7 @@ partial class Program
             // create a loop that will run until one pokemon faints
             while (Pokemon1.Health > 0 && Pokemon2.Health > 0)
             {
-
+                System.Console.WriteLine(pokemonImage);
                 // check to see which pokemon has the higher speed
                 if (Pokemon1.Speed > Pokemon2.Speed)
                 {
@@ -53,6 +56,8 @@ partial class Program
                 {
                     damage = Math.Max(damage / 2, 1);
                 }
+                //todo add critical attacks
+                //Random rnd = new Random();
 
                 // check to see if the damage is greater than 0
                 if (damage > 0)

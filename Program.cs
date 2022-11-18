@@ -1,5 +1,5 @@
 ﻿namespace TyrelsHelloWorld;
-
+using System.Text.RegularExpressions;
 partial class Program
 {
     static void Main(string[] args)
@@ -22,11 +22,20 @@ partial class Program
         int userNumber;
         Random rnd = new Random();
         Console.WriteLine("Welcome Pokemon!");
-        Console.WriteLine("Press Enter to begin or type q to quit");
+        Console.WriteLine("Press enter to begin or type q to quit");
         userInput = Console.ReadLine();
         //Run the pokemon app untill user wants to quit
         while (userInput != "q")
         {
+            System.Console.WriteLine("Enter Ash to begin");
+            string? userInput2 = Console.ReadLine();
+            Regex regex = new Regex("^Ash$", RegexOptions.IgnoreCase);
+            if (!regex.IsMatch(userInput2))
+            {
+                continue;
+            }
+
+
             Console.WriteLine("Enter 1 for Squirtle, 2 for Charmander, 3 for Bulbasour");
             Console.WriteLine("Enter your choice");
             userChoice = Console.ReadLine();
@@ -45,9 +54,9 @@ partial class Program
             Console.WriteLine("The computer chose " + pokemonSelectionArray[computerNumber - 1].Name);
             //run the PokemonImageSelector class
             PokemonImageSelector pokemonImageSelector = new  PokemonImageSelector(pokemonSelectionArray[userNumber - 1], pokemonSelectionArray[computerNumber - 1]);
-
+            string pokemonBattleImage = pokemonImageSelector.CheckSelection();
             //launch the pokemone battle from the PokemonBattle Class
-            PokemonBattle battle = new PokemonBattle(pokemonSelectionArray[userNumber - 1], pokemonSelectionArray[computerNumber - 1]);
+            PokemonBattle battle = new PokemonBattle(pokemonSelectionArray[userNumber - 1], pokemonSelectionArray[computerNumber - 1], pokemonBattleImage);
             battle.RunBattle();
 
             Console.WriteLine("Enter q to quit or anything else to play again");
